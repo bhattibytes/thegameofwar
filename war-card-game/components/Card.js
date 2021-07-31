@@ -11,8 +11,8 @@ class Card extends React.Component {
   render (props) {
     return (
       <div className={styles.card}>
-        <h1>{this.props.suit}</h1>
-        <h2>{this.props.value}</h2>
+        <h1>{this.suit}</h1>
+        <h2>{this.value}</h2>
       </div>
     )
   }
