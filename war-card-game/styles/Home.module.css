@@ -28,9 +28,22 @@
   justify-content: center;
   align-items: center;
   font-size: 3rem;
-  border-radius: .5rem;
-  color: white;
+  border-radius: .75rem;
   user-select: none;
+}
+
+.card {
+  position: absolute;
+  height: 300px;
+  width: 200px;
+  border: 1px solid black;
+  border-radius: .75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  background-color: black;
+  
 }
 
 .computerDeckCount {
@@ -53,6 +66,15 @@
   top: 300px;
 }
 
+.playerDeckCover {
+  position: absolute;
+  width: 330px;
+  height: 340px;
+  left: 38px;
+  top: 390px;
+  z-index: 10;
+}
+
 .playerDeck {
   position: absolute;
   width: 200px;
@@ -63,21 +85,46 @@
 
 .player_card_slot {
   position: absolute;
-  right: 300px;
+  left: 310px;
   width: 200px;
   height: 300px;
   margin-bottom: -300px;
-  background-color: dodgerblue;
+  color: red;
+  border-radius: .75rem;
+}
+
+.playerWarSlot {
+  position: absolute;
+  left: 350px;
+  top: 370px;
+  z-index: -10;
+}
+
+.computerDeckCover {
+  position: absolute;
+  width: 330px;
+  height: 340px;
+  right: 38px;
+  top: 390px;
+  z-index: 10;
+  
 }
 
 .computer_card_slot {
   position: absolute;
-  right: 300px;
-  top: 600px;
+  right: 310px;
   width: 200px;
   height: 300px;
   margin-bottom: -300px;
-  background-color: darkred;
+  color: white;
+  border-radius: .75rem;
+}
+
+.computerWarSlot {
+  position: absolute;
+  right: 550px;
+  top: 370px;
+  z-index: -10;
 }
 
 .text {
@@ -86,19 +133,7 @@
   width: 200px;
 }
 
-.card {
-  position: absolute;
-  height: 300px;
-  width: 200px;
-  border: 1px solid black;
-  border-radius: .5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 4rem;
-  background-color: black;
-  color: white;
-}
+
 
 .main {
   position: relative;
@@ -132,7 +167,7 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: red;
   text-decoration: none;
 }
 

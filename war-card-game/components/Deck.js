@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import Card from './Card';
 import styles from '../styles/Home.module.css';
+import Confetti from 'react-confetti'
 
 const SUITS = ['♠', '♥', '♦', '♣'];
 const VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -54,11 +55,14 @@ class Deck extends React.Component {
       computerWar: [],
       saveComputerCard: {},
       playerCardSlot: <div></div>,
+      playerWarDeckSlot: <div></div>,
       computerCardSlot: <div></div>,
+      computerWarDeckSlot: <div></div>,
       playerDeckElement: <div></div>,
       computerDeckElement: <div></div>,
       text: <div></div>,
       deck: <div></div>,
+      winCondition: <div></div>
     }
   }
 
@@ -101,22 +105,18 @@ class Deck extends React.Component {
   playGame(e) {
     if (this.isGameOver(this.state.playerDeck)) {
       this.setState({
-        text: "You Lose!!"
+        text: "You Lose!!",
       })
       stop = true;
     } else if (this.isGameOver(this.state.computerDeck)) {
       this.setState({
-        text: "You Win!!"
+        text: "You Win!!",
+        winCondition: <Confetti width={"500px"} height={"1000px"} recycle={false}/>
       })
       stop = true;
     }
     if (stop) {
       this.startGame();
-    }
-    e.preventDefault();
-    if (stop) {
-      this.startGame();
-      return;
     }
 
     if (inRound) {
@@ -173,11 +173,14 @@ class Deck extends React.Component {
   
     let updatePlayerDeck = this.state.playerDeck.slice(0, -1);
     let updateComputerDeck = this.state.computerDeck.slice(0, -1);
-
-    await this.setState({
-      playerDeck: this.shuffleDeck(updatePlayerDeck),
-      computerDeck: this.shuffleDeck(updateComputerDeck)
-    }, () => this.render());
+    if (playerCard && computerCard) {
+      await this.setState({
+        playerDeck: this.shuffleDeck(updatePlayerDeck),
+        computerDeck: this.shuffleDeck(updateComputerDeck),
+        playerCardSlot: <Card suit={playerCard.props.suit} value={playerCard.props.value} />,
+        computerCardSlot: <Card suit={computerCard.props.suit} value={computerCard.props.value} />
+      }, () => this.render());
+    }
     
     let wonDeck = [];
     
@@ -190,8 +193,8 @@ class Deck extends React.Component {
       await this.setState({
         playerDeck: this.state.playerDeck.slice(3),
         computerDeck: this.state.computerDeck.slice(3),
-        playerWar: playerWarArr,
-        computerWar: computerWarArr,
+        playerWar: this.state.playerWar.concat(playerWarArr),
+        computerWar: this.state.computerWar.concat(computerWarArr),
         savePlayerCard: {},
         saveComputerCard: {},
         warTime: !this.state.warTime
@@ -222,21 +225,27 @@ class Deck extends React.Component {
       await wonDeck.push(playerCard, computerCard);
       await this.setState({
         play: "Player Wins Round!",
-        playerDeck: this.shuffleDeck(this.state.playerDeck.concat(wonDeck))
+        playerDeck: this.shuffleDeck(this.state.playerDeck.concat(wonDeck)),
+        playerWarDeckSlot: <div></div>,
+        computerWarDeckSlot: <div></div>
       }, () => this.render())
 
     } else if (this.isRoundWinner(computerCard, playerCard)) {
       await wonDeck.push(playerCard, computerCard);
       await this.setState({
         play: "Computer Wins Round!",
-        computerDeck: this.shuffleDeck(this.state.computerDeck.concat(wonDeck))
+        computerDeck: this.shuffleDeck(this.state.computerDeck.concat(wonDeck)),
+        playerWarDeckSlot: <div></div>,
+        computerWarDeckSlot: <div></div>
       }, () => this.render())
 
     } else {
       this.setState({
         warTime: !this.state.warTime,
         savePlayerCard: playerCard,
-        saveComputerCard: computerCard
+        saveComputerCard: computerCard,
+        playerWarDeckSlot: <Card suit={playerCard.props.suit} value={playerCard.props.value} />,
+        computerWarDeckSlot: <Card suit={computerCard.props.suit} value={computerCard.props.value} />,
       }, () => this.render())
       return this.flipCards();
     }
@@ -267,18 +276,27 @@ class Deck extends React.Component {
   render () {
     return (
       <div className={styles.cardGame}>
+        {this.state.winCondition}
+        <img className={styles.playerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
         <div className={styles.playerDeckCount}>PlayerDeck Count:{this.state.playerDeck.length}</div>
         <div className={styles.playerDeck}>
           {this.state.playerDeck}
         </div>
+        <div className={styles.player_card_slot}>{this.state.playerCardSlot}</div>
+        <div className={styles.playerWarSlot}>{this.state.playerWarDeckSlot}</div>
         
         <div className={styles.text}> {this.state.play}</div>
         {this.state.play === 'GAME OVER' ? null : <button onClick={this.playGame}>PLAY</button>}<br></br>{this.state.play === 'GAME OVER' ? <button onClick={this.startGame}>RESET</button> : null }
 
+        {/* {this.state.playerDeck.length + this.state.computerDeck.length} */}
+  
+        <img className={styles.computerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
         <div className={styles.computerDeckCount}>ComputerDeck Count:{this.state.computerDeck.length}</div>
         <div className={styles.computerDeck}>
           {this.state.computerDeck}
         </div>
+        <div className={styles.computer_card_slot}>{this.state.computerCardSlot}</div>
+        <div className={styles.computerWarSlot}>{this.state.computerWarDeckSlot}</div>
        
       </div>
     )
