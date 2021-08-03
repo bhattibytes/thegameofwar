@@ -13,3 +13,12 @@ a {
 *, *::after, *::before {
   box-sizing: border-box;
 }
+
+
+button {
+  display: inline-block;
+  left: 520px;
+  height: 20px;
+  top: 500px;
+  width: 150px;
+}

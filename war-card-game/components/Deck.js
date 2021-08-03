@@ -18,16 +18,18 @@ const CARD_VALUE_MAP = {
   Q: 12,
   K: 13,
   A: 14
-}
+};
+let playerWarArr = [];
+let computerWarArr = [];
 
-let inRound, stop, warTime
+let inRound, stop;
 
 function freshDeck () {
   return SUITS.flatMap(suit => {
     return VALUES.map((value) => {
-      return <Card suit={suit} value={value}/>
-    })
-  })
+      return <Card suit={suit} value={value} key={Math.random()}/>
+    });
+  });
 }
 
 class Deck extends React.Component {
@@ -41,12 +43,16 @@ class Deck extends React.Component {
     this.updateDeckCount = this.updateDeckCount.bind(this);
     this.isRoundWinner = this.isRoundWinner.bind(this);
     this.isGameOver = this.isGameOver.bind(this);
+    this.startGame = this.startGame.bind(this);
     this.state = {
-      play: '',
+      play: 'Start New Game',
+      warTime: false,
       playerDeck: [],
-      computerDeck: [],
       playerWar: [],
+      savePlayerCard: {},
+      computerDeck: [],
       computerWar: [],
+      saveComputerCard: {},
       playerCardSlot: <div></div>,
       computerCardSlot: <div></div>,
       playerDeckElement: <div></div>,
@@ -57,31 +63,33 @@ class Deck extends React.Component {
   }
 
   componentDidMount() {
-    var newDeck = new Deck
+    let newDeck = new Deck;
+    this.shuffleDeck(newDeck);
     let newPlayer = newDeck.cards.slice(0, 26);
-    let newComputer = newDeck.cards.slice(26);
     this.shuffleDeck(newPlayer);
+    let newComputer = newDeck.cards.slice(26);
     this.shuffleDeck(newComputer);
     this.setState({
-      computerCardSlot: document.querySelector(".computer-card-slot"),
-      playerCardSlot: document.querySelector(".player-card-slot"),
+      cardGameElement: document.querySelector(".cardGame"),
+      computerCardSlot: document.querySelector(".computer_card_slot"),
+      playerCardSlot: document.querySelector(".player_card_slot"),
       computerDeckElement: document.querySelector(".computerDeck"),
       playerDeckElement: document.querySelector(".playerDeck"),
       text: document.querySelector(".text"),
+      deck: document.querySelector(".deck"),
       playerDeck: newPlayer,
-      computerDeck: newComputer,
-      deck: newDeck
+      computerDeck: newComputer
     })
   }
 
   shuffleDeck (deck = this.cards) {
-    var randomIndx;
-    var save;
+    let randomIndx;
+    let save;
 
-    for (var i = 0; i < deck.length; i++) {
+    for (let i = 0; i < deck.length; i++) {
     randomIndx = Math.floor(Math.random() * deck.length);
       if (i = randomIndx) {
-        randomIndx = Math.floor(Math.random() * deck.length)
+        randomIndx = Math.floor(Math.random() * deck.length);
       }
       save = deck[i];
       deck[i] = deck[randomIndx];
@@ -91,152 +99,187 @@ class Deck extends React.Component {
   }
 
   playGame(e) {
+    if (this.isGameOver(this.state.playerDeck)) {
+      this.setState({
+        text: "You Lose!!"
+      })
+      stop = true;
+    } else if (this.isGameOver(this.state.computerDeck)) {
+      this.setState({
+        text: "You Win!!"
+      })
+      stop = true;
+    }
+    if (stop) {
+      this.startGame();
+    }
     e.preventDefault();
     if (stop) {
       this.startGame();
-      return
+      return;
     }
 
     if (inRound) {
-      this.cleanBeforeRound()
+      this.cleanBeforeRound();
     } else {
-      this.flipCards()
+      this.flipCards();
     }
   }
 
-  startGame () {
-    inRound = false
-    stop = false
+  async startGame () {
+    await this.setState({
+      play: 'Start New Game'
+    })
+    let newDeck = new Deck;
+    this.shuffleDeck(newDeck);
+    let newPlayer = newDeck.cards.slice(0, 26);
+    this.shuffleDeck(newPlayer);
+    let newComputer = newDeck.cards.slice(26);
+    this.shuffleDeck(newComputer);
+    this.setState({
+      cardGameElement: document.querySelector(".cardGame"),
+      computerCardSlot: document.querySelector(".computer_card_slot"),
+      playerCardSlot: document.querySelector(".player_card_slot"),
+      computerDeckElement: document.querySelector(".computerDeck"),
+      playerDeckElement: document.querySelector(".playerDeck"),
+      text: document.querySelector(".text"),
+      deck: document.querySelector(".deck"),
+      playerDeck: newPlayer,
+      computerDeck: newComputer
+    })
+    inRound = false;
+    stop = false;
   
-    this.cleanBeforeRound()
+    this.cleanBeforeRound();
   }
 
   cleanBeforeRound() {
-    inRound = false
+    inRound = false;
 
     this.setState({
-      computerCardSlot: "",
-      playerCardSlot: "",
-      text: ""
+      computerCardSlot: <div></div>,
+      playerCardSlot: <div></div>,
+      text: <div></div>
     })
   
-    this.updateDeckCount() 
+    this.updateDeckCount(); 
   }
 
   async flipCards() {
-    inRound = true
+    inRound = true;
   
-    var playerCard = this.state.playerDeck[this.state.playerDeck.length - 1];
-    var computerCard = this.state.computerDeck[this.state.computerDeck.length - 1];
-    
-    var updatePlayerDeck = this.state.playerDeck.slice(0, -1);
-    var updateComputerDeck = this.state.computerDeck.slice(0, -1);
+    let playerCard = this.state.playerDeck[this.state.playerDeck.length - 1];
+    let computerCard = this.state.computerDeck[this.state.computerDeck.length - 1];
+  
+    let updatePlayerDeck = this.state.playerDeck.slice(0, -1);
+    let updateComputerDeck = this.state.computerDeck.slice(0, -1);
 
     await this.setState({
       playerDeck: this.shuffleDeck(updatePlayerDeck),
       computerDeck: this.shuffleDeck(updateComputerDeck)
     }, () => this.render());
     
-    var wonDeck = [];
-    var playerWarArr = [];
-    var computerWarArr = [];
-
-    console.log('Here Players Deck--->', this.state.playerDeck.length)
-    console.log('Here Computers Deck--->', this.state.computerDeck.length)
-    console.log('Here PlayerWAR Deck--->', this.state.playerWar.length)
-    console.log('Here ComputerWAR Deck--->', this.state.computerWar.length)
+    let wonDeck = [];
     
-    this.updateDeckCount()
+    this.updateDeckCount();
   
-    if (this.isRoundWinner(playerCard, computerCard)) {
-      if (warTime) {
-        warTime = false;
+    if (this.state.warTime) {
+      playerWarArr.push(...this.state.playerDeck.slice(0, 3), this.state.savePlayerCard);
+      computerWarArr.push(...this.state.computerDeck.slice(0, 3), this.state.saveComputerCard);
+      
+      await this.setState({
+        playerDeck: this.state.playerDeck.slice(3),
+        computerDeck: this.state.computerDeck.slice(3),
+        playerWar: playerWarArr,
+        computerWar: computerWarArr,
+        savePlayerCard: {},
+        saveComputerCard: {},
+        warTime: !this.state.warTime
+      }, () => this.render())
+
+        playerWarArr = [];
+        computerWarArr = [];
+
+      if (this.isRoundWinner(playerCard, computerCard)) {
         await wonDeck.push(playerCard, computerCard, ...this.state.playerWar, ...this.state.computerWar);
         await this.setState({
-          play: "WAR WINNER",
+          play: "PLAYER WINS WAR",
           playerDeck: this.shuffleDeck(this.state.playerDeck.concat(wonDeck)),
           playerWar: [],
           computerWar: []
         }, () => this.render());
-      } else {
-        wonDeck.push(playerCard, computerCard);
-        await this.setState({
-          play: "Win",
-          playerDeck: this.shuffleDeck(this.state.playerDeck.concat(wonDeck))
-        }, () => this.render())
-      }
-    } else if (this.isRoundWinner(computerCard, playerCard)) {
-      if (warTime) {
-        warTime = false;
+
+      } else if (this.isRoundWinner(computerCard, playerCard)) {
         await wonDeck.push(playerCard, computerCard, ...this.state.playerWar, ...this.state.computerWar);
         await this.setState({
-          play: "WAR LOOSER",
+          play: "COMPUTER WINS WAR",
           computerDeck: this.shuffleDeck(this.state.computerDeck.concat(wonDeck)),
           playerWar: [],
           computerWar: []
         }, () => this.render())
       }
-      wonDeck.push(playerCard, computerCard);
+    } else if (this.isRoundWinner(playerCard, computerCard)) {
+      await wonDeck.push(playerCard, computerCard);
       await this.setState({
-        play: "Loose",
+        play: "Player Wins Round!",
+        playerDeck: this.shuffleDeck(this.state.playerDeck.concat(wonDeck))
+      }, () => this.render())
+
+    } else if (this.isRoundWinner(computerCard, playerCard)) {
+      await wonDeck.push(playerCard, computerCard);
+      await this.setState({
+        play: "Computer Wins Round!",
         computerDeck: this.shuffleDeck(this.state.computerDeck.concat(wonDeck))
       }, () => this.render())
+
     } else {
-      wonDeck.push(playerCard, computerCard)
-      playerWarArr.concat(this.state.playerDeck.slice(0, 3))
-      computerWarArr.concat(this.state.computerDeck.slice(0, 3))
-      await this.setState({
-        playerDeck: this.state.playerDeck.slice(3),
-        computerDeck: this.state.computerDeck.slice(3),
-        play: 'GAME OVER',
-        playerWar: this.state.playerWar.concat(playerWarArr),
-        computerWar: this.state.computerWar.concat(computerWarArr)
+      this.setState({
+        warTime: !this.state.warTime,
+        savePlayerCard: playerCard,
+        saveComputerCard: computerCard
       }, () => this.render())
-      warTime = true
       return this.flipCards();
-    }
-  
-    if (this.isGameOver(this.state.playerDeck)) {
-      this.setState({
-        text: "You Lose!!"
-      })
-      stop = true
-    } else if (this.isGameOver(this.state.computerDeck)) {
-      this.setState({
-        text: "You Win!!"
-      })
-      stop = true
     }
   }
 
   updateDeckCount() {
     this.setState({
-      computerDeckElement: this.state.computerDeck.numberOfCards,
-      playerDeckElement: this.state.playerDeck.numberOfCards
+      computerDeckElement: this.state.computerDeck.length,
+      playerDeckElement: this.state.playerDeck.length
     })
   }
 
   isRoundWinner(cardOne, cardTwo) {
-    console.log('Here is card ONE--->', cardOne.props, 'Here is card TWO--->', cardTwo.props)
-    return CARD_VALUE_MAP[cardOne.props.value] > CARD_VALUE_MAP[cardTwo.props.value]
+    if (cardOne && cardTwo) {
+      return CARD_VALUE_MAP[cardOne.props.value] > CARD_VALUE_MAP[cardTwo.props.value];
+    } else {
+      this.setState({
+        play: 'GAME OVER'
+      })
+      return 
+    }
   }
 
   isGameOver(deck) {
-    return deck.numberOfCards === 0
+    return deck.length === 0;
   }
 
   render () {
     return (
       <div className={styles.cardGame}>
-        <div className={styles.playerDeck, styles.deck}>
+        <div className={styles.playerDeckCount}>PlayerDeck Count:{this.state.playerDeck.length}</div>
+        <div className={styles.playerDeck}>
           {this.state.playerDeck}
         </div>
-        <div className="player-card-slot card-slot"></div>
-        <div className={styles.text}> {this.state.play} <button onClick={this.playGame}>PLAY</button></div>
-        <div className={styles.computerDeck, styles.deck}>
+        
+        <div className={styles.text}> {this.state.play}</div>
+        {this.state.play === 'GAME OVER' ? null : <button onClick={this.playGame}>PLAY</button>}<br></br>{this.state.play === 'GAME OVER' ? <button onClick={this.startGame}>RESET</button> : null }
+
+        <div className={styles.computerDeckCount}>ComputerDeck Count:{this.state.computerDeck.length}</div>
+        <div className={styles.computerDeck}>
           {this.state.computerDeck}
         </div>
-        <div className="computer-card-slot card-slot"></div>
+       
       </div>
     )
   }
