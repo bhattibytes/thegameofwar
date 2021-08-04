@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Deck from '../components/Deck';
 
 export default function Home() {
   return (
@@ -13,11 +12,29 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <div className={styles.nav}>
+          <div className={styles.nav_header}>
+            <ul className={styles.links}>
+              <li>
+                <a href="/index">Home</a>
+              </li>
+              <li>
+                <a href="/Instructions">Rules</a>
+              </li>
+              <li>
+                <a href="/Contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+  
         <h1 className={styles.title}>
-          Welcome to War Card Game by <br></br><a href="https://info.mintbean.io/" target="_blank" alt="mintbean">Mintbean Hackathon</a>
+          ~ Welcome to War Card Game ~ <br></br><a href="https://info.mintbean.io/" target="_blank" alt="mintbean">Mintbean Hackathon</a>
         </h1>
+        <a href="/Game">
+          <h1>Enter Game</h1>
+        </a>
       </main>
-      <Deck />
       <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

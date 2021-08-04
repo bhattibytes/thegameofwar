@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import Card from './Card';
+import Card from '../components/Card';
 import styles from '../styles/Home.module.css';
 import Confetti from 'react-confetti'
 
@@ -33,7 +33,7 @@ function freshDeck () {
   });
 }
 
-class Deck extends React.Component {
+class Game extends React.Component {
   constructor(cards = freshDeck()){
     super();
     this.cards = cards
@@ -41,7 +41,6 @@ class Deck extends React.Component {
     this.playGame = this.playGame.bind(this);
     this.cleanBeforeRound = this.cleanBeforeRound.bind(this);
     this.flipCards = this.flipCards.bind(this);
-    this.updateDeckCount = this.updateDeckCount.bind(this);
     this.isRoundWinner = this.isRoundWinner.bind(this);
     this.isGameOver = this.isGameOver.bind(this);
     this.startGame = this.startGame.bind(this);
@@ -58,8 +57,6 @@ class Deck extends React.Component {
       playerWarDeckSlot: <div></div>,
       computerCardSlot: <div></div>,
       computerWarDeckSlot: <div></div>,
-      playerDeckElement: <div></div>,
-      computerDeckElement: <div></div>,
       text: <div></div>,
       deck: <div></div>,
       winCondition: <div></div>
@@ -67,7 +64,7 @@ class Deck extends React.Component {
   }
 
   componentDidMount() {
-    let newDeck = new Deck;
+    let newDeck = new Game;
     this.shuffleDeck(newDeck);
     let newPlayer = newDeck.cards.slice(0, 26);
     this.shuffleDeck(newPlayer);
@@ -77,8 +74,6 @@ class Deck extends React.Component {
       cardGameElement: document.querySelector(".cardGame"),
       computerCardSlot: document.querySelector(".computer_card_slot"),
       playerCardSlot: document.querySelector(".player_card_slot"),
-      computerDeckElement: document.querySelector(".computerDeck"),
-      playerDeckElement: document.querySelector(".playerDeck"),
       text: document.querySelector(".text"),
       deck: document.querySelector(".deck"),
       playerDeck: newPlayer,
@@ -140,8 +135,6 @@ class Deck extends React.Component {
       cardGameElement: document.querySelector(".cardGame"),
       computerCardSlot: document.querySelector(".computer_card_slot"),
       playerCardSlot: document.querySelector(".player_card_slot"),
-      computerDeckElement: document.querySelector(".computerDeck"),
-      playerDeckElement: document.querySelector(".playerDeck"),
       text: document.querySelector(".text"),
       deck: document.querySelector(".deck"),
       playerDeck: newPlayer,
@@ -161,8 +154,6 @@ class Deck extends React.Component {
       playerCardSlot: <div></div>,
       text: <div></div>
     })
-  
-    this.updateDeckCount(); 
   }
 
   async flipCards() {
@@ -183,8 +174,6 @@ class Deck extends React.Component {
     }
     
     let wonDeck = [];
-    
-    this.updateDeckCount();
   
     if (this.state.warTime) {
       playerWarArr.push(...this.state.playerDeck.slice(0, 3), this.state.savePlayerCard);
@@ -251,13 +240,6 @@ class Deck extends React.Component {
     }
   }
 
-  updateDeckCount() {
-    this.setState({
-      computerDeckElement: this.state.computerDeck.length,
-      playerDeckElement: this.state.playerDeck.length
-    })
-  }
-
   isRoundWinner(cardOne, cardTwo) {
     if (cardOne && cardTwo) {
       return CARD_VALUE_MAP[cardOne.props.value] > CARD_VALUE_MAP[cardTwo.props.value];
@@ -277,30 +259,40 @@ class Deck extends React.Component {
     return (
       <div className={styles.cardGame}>
         {this.state.winCondition}
+        {/* Players Cards  */}
         <img className={styles.playerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
         <div className={styles.playerDeckCount}>PlayerDeck Count:{this.state.playerDeck.length}</div>
-        <div className={styles.playerDeck}>
-          {this.state.playerDeck}
-        </div>
+        <div className={styles.playerDeck}>{this.state.playerDeck}</div>
         <div className={styles.player_card_slot}>{this.state.playerCardSlot}</div>
-        <div className={styles.playerWarSlot}>{this.state.playerWarDeckSlot}</div>
+
+        {this.state.play === 'COMPUTER WINS WAR' || this.state.play === 'PLAYER WINS WAR' ? <div>
+        <img className={styles.playerDeckCoverWar1} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+        <img className={styles.playerDeckCoverWar2} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+        <img className={styles.playerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+        <div className={styles.playerWarSlot}>{this.state.playerWarDeckSlot}</div></div> : null }
         
+        {/* Buttons and Pay Messages */}
         <div className={styles.text}> {this.state.play}</div>
         {this.state.play === 'GAME OVER' ? null : <button onClick={this.playGame}>PLAY</button>}<br></br>{this.state.play === 'GAME OVER' ? <button onClick={this.startGame}>RESET</button> : null }
 
-        {/* {this.state.playerDeck.length + this.state.computerDeck.length} */}
-  
+        {/* TOTAL CARD COUNT */}
+        {this.state.playerDeck.length + this.state.computerDeck.length}
+
+        {/* Computer's Cards */}
         <img className={styles.computerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
         <div className={styles.computerDeckCount}>ComputerDeck Count:{this.state.computerDeck.length}</div>
-        <div className={styles.computerDeck}>
-          {this.state.computerDeck}
-        </div>
+        <div className={styles.computerDeck}>{this.state.computerDeck}</div>
         <div className={styles.computer_card_slot}>{this.state.computerCardSlot}</div>
-        <div className={styles.computerWarSlot}>{this.state.computerWarDeckSlot}</div>
        
+        {this.state.play === 'COMPUTER WINS WAR' || this.state.play === 'PLAYER WINS WAR' ? <div>
+        <img className={styles.computerDeckCoverWar1} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+        <img className={styles.computerDeckCoverWar2} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+        <img className={styles.computerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+        <div className={styles.computerWarSlot}>{this.state.computerWarDeckSlot}</div>
+        </div> : null}
       </div>
     )
   }
 }  
 
-export default Deck;
+export default Game;
