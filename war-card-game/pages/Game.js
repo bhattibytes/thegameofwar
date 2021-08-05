@@ -125,7 +125,7 @@ class Game extends React.Component {
     await this.setState({
       play: 'Start New Game'
     })
-    let newDeck = new Deck;
+    let newDeck = new Game;
     this.shuffleDeck(newDeck);
     let newPlayer = newDeck.cards.slice(0, 26);
     this.shuffleDeck(newPlayer);
@@ -158,12 +158,16 @@ class Game extends React.Component {
 
   async flipCards() {
     inRound = true;
-  
+    // Take the last card off the top of the Deck for each the player and the computer 
     let playerCard = this.state.playerDeck[this.state.playerDeck.length - 1];
     let computerCard = this.state.computerDeck[this.state.computerDeck.length - 1];
-  
+    
+    // Create a new deck from the player and computer deck not including the last one
     let updatePlayerDeck = this.state.playerDeck.slice(0, -1);
     let updateComputerDeck = this.state.computerDeck.slice(0, -1);
+
+    // If there are still playable cards set state of both decks and shuffle them and update card slots with the 
+    // last card in the deck
     if (playerCard && computerCard) {
       await this.setState({
         playerDeck: this.shuffleDeck(updatePlayerDeck),
@@ -173,19 +177,21 @@ class Game extends React.Component {
       }, () => this.render());
     }
     
+    // Create a won deck that will contain all cards that will be won
     let wonDeck = [];
-  
+    
     if (this.state.warTime) {
-      playerWarArr.push(...this.state.playerDeck.slice(0, 3), this.state.savePlayerCard);
-      computerWarArr.push(...this.state.computerDeck.slice(0, 3), this.state.saveComputerCard);
+      // if there is war place player and computer cards in their war arrays plus the last saved previous cards
+      await playerWarArr.push(...this.state.playerDeck.slice(0, 3), this.state.savePlayerCard);
+      await computerWarArr.push(...this.state.computerDeck.slice(0, 3), this.state.saveComputerCard);
       
       await this.setState({
         playerDeck: this.state.playerDeck.slice(3),
         computerDeck: this.state.computerDeck.slice(3),
         playerWar: this.state.playerWar.concat(playerWarArr),
         computerWar: this.state.computerWar.concat(computerWarArr),
-        savePlayerCard: {},
-        saveComputerCard: {},
+        savePlayerCard: playerCard,
+        saveComputerCard: computerCard,
         warTime: !this.state.warTime
       }, () => this.render())
 
@@ -197,6 +203,8 @@ class Game extends React.Component {
         await this.setState({
           play: "PLAYER WINS WAR",
           playerDeck: this.shuffleDeck(this.state.playerDeck.concat(wonDeck)),
+          playerCardSlot: <Card suit={playerCard.props.suit} value={playerCard.props.value} />,
+          computerCardSlot: <Card suit={computerCard.props.suit} value={computerCard.props.value} />,
           playerWar: [],
           computerWar: []
         }, () => this.render());
@@ -206,9 +214,11 @@ class Game extends React.Component {
         await this.setState({
           play: "COMPUTER WINS WAR",
           computerDeck: this.shuffleDeck(this.state.computerDeck.concat(wonDeck)),
+          playerCardSlot: <Card suit={playerCard.props.suit} value={playerCard.props.value} />,
+          computerCardSlot: <Card suit={computerCard.props.suit} value={computerCard.props.value} />,
           playerWar: [],
           computerWar: []
-        }, () => this.render())
+        }, () => this.render());
       }
     } else if (this.isRoundWinner(playerCard, computerCard)) {
       await wonDeck.push(playerCard, computerCard);
@@ -229,7 +239,8 @@ class Game extends React.Component {
       }, () => this.render())
 
     } else {
-      this.setState({
+      // Else, there is a draw and we go into war 
+      await this.setState({
         warTime: !this.state.warTime,
         savePlayerCard: playerCard,
         saveComputerCard: computerCard,
@@ -268,16 +279,14 @@ class Game extends React.Component {
         {this.state.play === 'COMPUTER WINS WAR' || this.state.play === 'PLAYER WINS WAR' ? <div>
         <img className={styles.playerDeckCoverWar1} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
         <img className={styles.playerDeckCoverWar2} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-        <img className={styles.playerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-        <div className={styles.playerWarSlot}>{this.state.playerWarDeckSlot}</div></div> : null }
+        <img className={styles.playerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" /><div className={styles.playerWarCardAttack}>{this.state.playerCardSlot}</div></div> : null }
         
-        {/* Buttons and Pay Messages */}
-        <div className={styles.text}> {this.state.play}</div>
-        {this.state.play === 'GAME OVER' ? null : <button onClick={this.playGame}>PLAY</button>}<br></br>{this.state.play === 'GAME OVER' ? <button onClick={this.startGame}>RESET</button> : null }
-
-        {/* TOTAL CARD COUNT */}
-        {this.state.playerDeck.length + this.state.computerDeck.length}
-
+        {/* Buttons and Play Win/Loose Messages */}
+        <div className={styles.playDiv}>
+          <div className={styles.text}> {this.state.play}</div>
+          <button className={styles.playButton} onClick={this.playGame}>PLAY</button>
+        </div>
+        
         {/* Computer's Cards */}
         <img className={styles.computerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
         <div className={styles.computerDeckCount}>ComputerDeck Count:{this.state.computerDeck.length}</div>
@@ -287,9 +296,7 @@ class Game extends React.Component {
         {this.state.play === 'COMPUTER WINS WAR' || this.state.play === 'PLAYER WINS WAR' ? <div>
         <img className={styles.computerDeckCoverWar1} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
         <img className={styles.computerDeckCoverWar2} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-        <img className={styles.computerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-        <div className={styles.computerWarSlot}>{this.state.computerWarDeckSlot}</div>
-        </div> : null}
+        <img className={styles.computerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" /><div className={styles.computerWarCardAttack} >{this.state.computerCardSlot}</div></div> : null}
       </div>
     )
   }
