@@ -7,6 +7,17 @@
   align-items: center;
 }
 
+.howToPlay {
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 20% 60% 20%;
+}
+
+.howToPlayImg {
+  grid-row: 1;
+  grid-column: 2;
+}
+
 /* Nav */
 
 .nav_header {

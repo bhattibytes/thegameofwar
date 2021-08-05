@@ -4,6 +4,9 @@ import styles from '../styles/Home.module.css';
 const Instructions = () => {
   return (
     <div>
+      <div className={styles.howToPlay}>
+        <img className={styles.howToPlayImg} src="https://i.ytimg.com/vi/J5vT33Vo04s/maxresdefault.jpg" height="400px"/>
+      </div>
       <h1>Instructions</h1>
       <h4 className={styles.instruction_title}>THE DEAL</h4>
         <p className={styles.instruction_details}>The deck is shuffled and divided evenly with each player receiving 26 cards. Each player places their stack of cards face down, in front of them.</p>
