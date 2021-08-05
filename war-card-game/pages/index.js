@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
@@ -10,32 +10,22 @@ export default function Home() {
         <title>War Card Game</title>
         <meta name="description" content="Hackathon Card Game Challenge" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"></link>
       </Head>
-      
+
       <NavBar />
       <main className={styles.main}>
         <h1 className={styles.title}>
-          ~ Welcome to War Card Game ~ <br></br><a href="https://info.mintbean.io/" target="_blank" alt="mintbean">Mintbean Hackathon</a>
+          Welcome to War Card Game<br></br><a href="https://info.mintbean.io/" target="_blank" alt="mintbean">Mintbean Hackathon</a>
         </h1>
         <a href="/Game">
-          <h1>Enter Game</h1>
+          <h1 className={styles.landing}>Enter Game</h1>
         </a>
         <a href="/Instructions">
-          <h1>See the Rules</h1>
+          <h1 className={styles.landing}>See the Rules</h1>
         </a>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }

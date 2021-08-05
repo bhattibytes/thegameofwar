@@ -7,46 +7,110 @@
   align-items: center;
 }
 
+.nav {
+  display: flex;
+  justify-content: center;
+  font-style: oblique;
+  background-color: white;
+}
+
+.main {
+  position: relative;
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+  width: 100%;
+  background-image: url("https://wallpaperaccess.com/full/3043444.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.game {
+  height: 1000px;
+  background-image: url("https://images8.alphacoders.com/559/559296.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 95%;
+  z-index: -100;
+}
+
+.howToPlay {
+  display: block;
+  align-content: center;
+}
+
+.howToPlayImg {
+  border: 3px solid green;
+  border-radius: 25px;
+}
+
+.rulesContainer {
+  border: 3px solid green;
+  border-radius: 25px;
+  margin-top: 30px;
+}
+
+.contact {
+  background-color: #03639c;
+  min-height: 1000px;
+}
+
+.contact_container {
+  display: grid;
+  grid-template-columns: 10% 10% 60% 10% 10%;
+  grid-template-rows: 50% 50%;
+  justify-items: center;
+}
+
+.jason {
+  position: relative;
+  grid-column: 3;
+  grid-row: 1;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.pam {
+  grid-column: 3;
+  grid-row: 3;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+}
 
 .contact_heading {
   text-align: center;
   padding-bottom: 3rem;
-
-.howToPlay {
-  display: grid;
-  grid-template-rows: 50% 50%;
-  grid-template-columns: 20% 60% 20%;
 }
 
-.howToPlayImg {
-  grid-row: 1;
-  grid-column: 2;
+.linkedin {
+  border-radius: 25px;
+  margin-left: 20px;
 }
 
-/* Nav */
-
-.nav_header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-
+.JB_profile {
+  border-radius: 50%;
+  margin-right: 20px;
 }
 
-.profile {
+.PJ_profile {
   border-radius: 50%;
 }
 
 .instructions_container {
+  text-align: center;
   padding: 0 4rem;
 }
-
 
 .instructions_heading {
   text-align: center;
   margin-bottom: 3rem;
 }
-
 
 .cardGame {
   margin: 0;
@@ -69,10 +133,15 @@
   display: flex;
   align-items: center;
   width: 200px;
+  font-size: 30px;
+  color: white;
 }
 
 .playButton {
   margin-top: 50px;
+  border-radius: 25px;
+  outline: none;
+  height: 50px;
 }
 
 .deck {
@@ -102,24 +171,21 @@
   background-color: black;
 }
 
-.computerDeckCount {
-  position: absolute;
-  right: 120px;
-  top: 300px;
-}
-
-.computerDeck {
-  position: absolute;
-  width: 200px;
-  height: 300px;
-  right: 100px;
-  top: 410px;
-}
+/* Player Side  */
 
 .playerDeckCount {
   position: absolute;
   left: 120px;
   top: 300px;
+  color: white;
+}
+
+.playerDeck {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  left: 100px;
+  top: 410px;
 }
 
 .playerDeckCover {
@@ -131,14 +197,6 @@
   z-index: 10;
 }
 
-.playerDeck {
-  position: absolute;
-  width: 200px;
-  height: 300px;
-  left: 100px;
-  top: 410px;
-}
-
 .player_card_slot {
   position: absolute;
   left: 310px;
@@ -147,6 +205,7 @@
   color: red;
   border-radius: .75rem;
   top: 410px;
+  z-index: 5;
 }
 
 .playerWarCardAttack {
@@ -157,21 +216,13 @@
   z-index: 10;
 }
 
-.computerWarCardAttack {
-  position: absolute;
-  right: 300px;
-  top: 450px;
-  color: white;
-  z-index: 10;
-}
-
 .playerDeckCoverWar1 {
   position: absolute;
   width: 330px;
   height: 340px;
   left: 285px;
   top: 360px;
-  z-index: -7;
+  z-index: 1;
 }
 
 .playerDeckCoverWar2 {
@@ -180,7 +231,7 @@
   height: 340px;
   left: 285px;
   top: 330px;
-  z-index: -8;
+  z-index: 2;
 }
 
 .playerDeckCoverWar3 {
@@ -189,49 +240,31 @@
   height: 340px;
   left: 285px;
   top: 300px;
-  z-index: -9;
+  z-index: 3;
 }
 
 .playerWarSlot {
   position: absolute;
   left: 350px;
   top: 370px;
-  z-index: -10;
+  z-index: 4;
 }
 
-.computerDeckCoverWar1 {
-  position: absolute;
-  width: 330px;
-  height: 340px;
-  right: 280px;
-  top: 360px;
-  z-index: -7;
-}
+/* Computer Side  */
 
-.computerDeckCoverWar2 {
+.computerDeckCount {
   position: absolute;
-  width: 330px;
-  height: 340px;
-  right: 280px;
-  top: 330px;
-  z-index: -8;
-}
-
-.computerDeckCoverWar3 {
-  position: absolute;
-  width: 330px;
-  height: 340px;
-  right: 280px;
+  right: 120px;
   top: 300px;
-  z-index: -9;
+  color: white;
 }
 
-.computerWarSlot {
+.computerDeck {
   position: absolute;
-  right: 550px;
-  top: 600px;
-  color: white;
-  z-index: -10;
+  width: 200px;
+  height: 300px;
+  right: 100px;
+  top: 410px;
 }
 
 .computerDeckCover {
@@ -251,25 +284,50 @@
   color: white;
   border-radius: .75rem;
   top: 410px;
+  z-index: 5;
 }
 
-
-.text {
-  display: flex;
-  align-items: flex-start;
-  width: 200px;
+.computerWarCardAttack {
+  position: absolute;
+  right: 300px;
+  top: 450px;
+  color: white;
+  z-index: 10;
 }
 
+.computerDeckCoverWar1 {
+  position: absolute;
+  width: 330px;
+  height: 340px;
+  right: 280px;
+  top: 360px;
+  z-index: 1;
+}
 
-.main {
-  position: relative;
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 5rem;
+.computerDeckCoverWar2 {
+  position: absolute;
+  width: 330px;
+  height: 340px;
+  right: 280px;
+  top: 330px;
+  z-index: 2;
+}
+
+.computerDeckCoverWar3 {
+  position: absolute;
+  width: 330px;
+  height: 340px;
+  right: 280px;
+  top: 300px;
+  z-index: 3;
+}
+
+.computerWarSlot {
+  position: absolute;
+  right: 550px;
+  top: 600px;
+  color: white;
+  z-index: 4;
 }
 
 .footer {
@@ -283,6 +341,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
 }
 
 .footer a {
@@ -304,14 +363,22 @@
 }
 
 .title {
+  position: absolute;
   margin: 0;
   line-height: 1.15;
+  font-weight: 600;
   font-size: 4rem;
+  top: 50px;
+  color: white;
 }
 
 .title,
 .description {
   text-align: center;
+}
+
+.landing {
+  color: white;
 }
 
 

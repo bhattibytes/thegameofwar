@@ -3,6 +3,7 @@ import Card from '../components/Card';
 import styles from '../styles/Home.module.css';
 import Confetti from 'react-confetti'
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 const SUITS = ['♠', '♥', '♦', '♣'];
 const VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -269,13 +270,13 @@ class Game extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className={styles.game}>
         <NavBar />
         <div className={styles.cardGame}>
           {this.state.winCondition}
           {/* Players Cards  */}
           <img className={styles.playerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-          <div className={styles.playerDeckCount}>PlayerDeck Count:{this.state.playerDeck.length}</div>
+          <div className={styles.playerDeckCount}>Player Deck Count: {this.state.playerDeck.length}</div>
           <div className={styles.playerDeck}>{this.state.playerDeck}</div>
           <div className={styles.player_card_slot}>{this.state.playerCardSlot}</div>
 
@@ -292,7 +293,7 @@ class Game extends React.Component {
           
           {/* Computer's Cards */}
           <img className={styles.computerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-          <div className={styles.computerDeckCount}>ComputerDeck Count:{this.state.computerDeck.length}</div>
+          <div className={styles.computerDeckCount}>Computer Deck Count: {this.state.computerDeck.length}</div>
           <div className={styles.computerDeck}>{this.state.computerDeck}</div>
           <div className={styles.computer_card_slot}>{this.state.computerCardSlot}</div>
         
@@ -301,6 +302,7 @@ class Game extends React.Component {
           <img className={styles.computerDeckCoverWar2} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
           <img className={styles.computerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" /><div className={styles.computerWarCardAttack} >{this.state.computerCardSlot}</div></div> : null}
         </div>
+        <Footer />
       </div>
     )
   }
