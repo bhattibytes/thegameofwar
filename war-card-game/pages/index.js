@@ -18,7 +18,7 @@ export default function Home() {
         <a href="/Game">
           <h1>Enter Game</h1>
         </a>
-        <a href="/Rules">
+        <a href="/Instructions">
           <h1>See the Rules</h1>
         </a>
       </main>
