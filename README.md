@@ -13,9 +13,17 @@ Playing cards are at least ten centuries old. There are many decks, many games f
 
 ## ScreenShots
 ![Landing](war-card-game/public/Landing.png?raw=true)
+
+
 ![Instructions](war-card-game/public/Rules.png?raw=true)
+
+
 ![Gameplay](/war-card-game/public/WarGamePlay.png?raw=true)
+
+
 ![PlayerWinAnimation](war-card-game/public/ConfettiAnimation.png?raw=true)
+
+
 ![LinkedinLanding](war-card-game/public/LinkedinLanding.png?raw=true)
 
 ### Technologies Used: JavaScript, React, Next.js, CSS3
