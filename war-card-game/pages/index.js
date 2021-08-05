@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import NavBar from '../components/NavBar';
 
 export default function Home() {
   return (
@@ -10,23 +11,9 @@ export default function Home() {
         <meta name="description" content="Hackathon Card Game Challenge" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      
+      <NavBar />
       <main className={styles.main}>
-        <div className={styles.nav}>
-          <div className={styles.nav_header}>
-            <ul className={styles.links}>
-              <li>
-                <a href="/index">Home</a>
-              </li>
-              <li>
-                <a href="/Instructions">Rules</a>
-              </li>
-              <li>
-                <a href="/Contact">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
   
         <h1 className={styles.title}>
           ~ Welcome to War Card Game ~ <br></br><a href="https://info.mintbean.io/" target="_blank" alt="mintbean">Mintbean Hackathon</a>

@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import Card from '../components/Card';
 import styles from '../styles/Home.module.css';
 import Confetti from 'react-confetti'
+import NavBar from '../components/NavBar';
 
 const SUITS = ['♠', '♥', '♦', '♣'];
 const VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -268,35 +269,38 @@ class Game extends React.Component {
 
   render () {
     return (
-      <div className={styles.cardGame}>
-        {this.state.winCondition}
-        {/* Players Cards  */}
-        <img className={styles.playerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-        <div className={styles.playerDeckCount}>PlayerDeck Count:{this.state.playerDeck.length}</div>
-        <div className={styles.playerDeck}>{this.state.playerDeck}</div>
-        <div className={styles.player_card_slot}>{this.state.playerCardSlot}</div>
+      <div>
+        <NavBar />
+        <div className={styles.cardGame}>
+          {this.state.winCondition}
+          {/* Players Cards  */}
+          <img className={styles.playerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+          <div className={styles.playerDeckCount}>PlayerDeck Count:{this.state.playerDeck.length}</div>
+          <div className={styles.playerDeck}>{this.state.playerDeck}</div>
+          <div className={styles.player_card_slot}>{this.state.playerCardSlot}</div>
 
-        {this.state.play === 'COMPUTER WINS WAR' || this.state.play === 'PLAYER WINS WAR' ? <div>
-        <img className={styles.playerDeckCoverWar1} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-        <img className={styles.playerDeckCoverWar2} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-        <img className={styles.playerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" /><div className={styles.playerWarCardAttack}>{this.state.playerCardSlot}</div></div> : null }
+          {this.state.play === 'COMPUTER WINS WAR' || this.state.play === 'PLAYER WINS WAR' ? <div>
+          <img className={styles.playerDeckCoverWar1} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+          <img className={styles.playerDeckCoverWar2} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+          <img className={styles.playerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" /><div className={styles.playerWarCardAttack}>{this.state.playerCardSlot}</div></div> : null }
+          
+          {/* Buttons and Play Win/Loose Messages */}
+          <div className={styles.playDiv}>
+            <div className={styles.text}> {this.state.play}</div>
+            <button className={styles.playButton} onClick={this.playGame}>PLAY</button>
+          </div>
+          
+          {/* Computer's Cards */}
+          <img className={styles.computerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+          <div className={styles.computerDeckCount}>ComputerDeck Count:{this.state.computerDeck.length}</div>
+          <div className={styles.computerDeck}>{this.state.computerDeck}</div>
+          <div className={styles.computer_card_slot}>{this.state.computerCardSlot}</div>
         
-        {/* Buttons and Play Win/Loose Messages */}
-        <div className={styles.playDiv}>
-          <div className={styles.text}> {this.state.play}</div>
-          <button className={styles.playButton} onClick={this.playGame}>PLAY</button>
+          {this.state.play === 'COMPUTER WINS WAR' || this.state.play === 'PLAYER WINS WAR' ? <div>
+          <img className={styles.computerDeckCoverWar1} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+          <img className={styles.computerDeckCoverWar2} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
+          <img className={styles.computerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" /><div className={styles.computerWarCardAttack} >{this.state.computerCardSlot}</div></div> : null}
         </div>
-        
-        {/* Computer's Cards */}
-        <img className={styles.computerDeckCover} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-        <div className={styles.computerDeckCount}>ComputerDeck Count:{this.state.computerDeck.length}</div>
-        <div className={styles.computerDeck}>{this.state.computerDeck}</div>
-        <div className={styles.computer_card_slot}>{this.state.computerCardSlot}</div>
-       
-        {this.state.play === 'COMPUTER WINS WAR' || this.state.play === 'PLAYER WINS WAR' ? <div>
-        <img className={styles.computerDeckCoverWar1} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-        <img className={styles.computerDeckCoverWar2} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
-        <img className={styles.computerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" /><div className={styles.computerWarCardAttack} >{this.state.computerCardSlot}</div></div> : null}
       </div>
     )
   }

@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from '../styles/Home.module.css';
+import NavBar from '../components/NavBar';
 
 const Instructions = () => {
   return (
     <div>
+      <NavBar />
       <div className={styles.howToPlay}>
         <img className={styles.howToPlayImg} src="https://i.ytimg.com/vi/J5vT33Vo04s/maxresdefault.jpg" height="400px"/>
       </div>
