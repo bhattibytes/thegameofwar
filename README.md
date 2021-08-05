@@ -12,8 +12,11 @@ Playing cards are at least ten centuries old. There are many decks, many games f
 - No collectible card games or non-standard decks allowed (so for example, no Yu-Gi-Oh!, Magic the Gathering, or Pokemon. And no Tarot cards either.)
 
 ## ScreenShots
+![Landing](war-card-game/public/Landing.png?raw=true)
+![Instructions](war-card-game/public/Rules.png?raw=true)
 ![Gameplay](/war-card-game/public/WarGamePlay.png?raw=true)
-![PlayerWinAnimation](war-card-game/public/Confetti Animation.png?raw=true)
+![PlayerWinAnimation](war-card-game/public/ConfettiAnimation.png?raw=true)
+![LinkedinLanding](war-card-game/public/LinkedinLanding.png?raw=true)
 
 ### Technologies Used: JavaScript, React, Next.js, CSS3
 
