@@ -14,12 +14,14 @@ export default function Home() {
       
       <NavBar />
       <main className={styles.main}>
-  
         <h1 className={styles.title}>
           ~ Welcome to War Card Game ~ <br></br><a href="https://info.mintbean.io/" target="_blank" alt="mintbean">Mintbean Hackathon</a>
         </h1>
         <a href="/Game">
           <h1>Enter Game</h1>
+        </a>
+        <a href="/Instructions">
+          <h1>See the Rules</h1>
         </a>
       </main>
       <footer className={styles.footer}>

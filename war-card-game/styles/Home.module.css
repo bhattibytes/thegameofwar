@@ -7,6 +7,11 @@
   align-items: center;
 }
 
+
+.contact_heading {
+  text-align: center;
+  padding-bottom: 3rem;
+
 .howToPlay {
   display: grid;
   grid-template-rows: 50% 50%;
@@ -25,18 +30,23 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+
 }
 
-.links {
-  height: 0;
-  overflow: hidden;
+.profile {
+  border-radius: 50%;
 }
 
-.links a {
-  font-size: 1rem;
-  display: block;
-  padding: 0.5rem 1rem;
+.instructions_container {
+  padding: 0 4rem;
 }
+
+
+.instructions_heading {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
 
 .cardGame {
   margin: 0;
@@ -242,6 +252,14 @@
   border-radius: .75rem;
   top: 410px;
 }
+
+
+.text {
+  display: flex;
+  align-items: flex-start;
+  width: 200px;
+}
+
 
 .main {
   position: relative;
