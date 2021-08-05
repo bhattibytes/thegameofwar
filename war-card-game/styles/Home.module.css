@@ -49,9 +49,9 @@
 }
 
 .rulesContainer {
-  border: 3px solid green;
   border-radius: 25px;
   margin-top: 30px;
+  height: 500px;
 }
 
 .contact {
@@ -104,7 +104,13 @@
 
 .instructions_container {
   text-align: center;
-  padding: 0 4rem;
+  padding: 10px;
+  height: 1000px;
+}
+
+.instructions_details {
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .instructions_heading {

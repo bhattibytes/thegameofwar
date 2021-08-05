@@ -23,7 +23,7 @@ const Instructions = () => {
             <h4 className={styles.instructions_title}>HOW TO KEEP SCORE</h4>
               <p className={styles.instructions_details}>The game ends when one player has won all the cards.</p>
           </div>
-      </div>
+        </div>
       <Footer />
     </div>
   )

@@ -6,7 +6,6 @@ body {
   font-family: 'Roboto Slab', serif;
   font-weight: 500;
   font-size: 18px;
-  overflow: hidden;
 }
 
 a {
@@ -25,8 +24,4 @@ button {
   height: 20px;
   top: 500px;
   width: 150px;
-}
-
-ul {
-  list-style: none;
 }
