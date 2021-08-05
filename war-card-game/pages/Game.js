@@ -290,6 +290,11 @@ class Game extends React.Component {
         <img className={styles.computerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
         <div className={styles.computerWarSlot}>{this.state.computerWarDeckSlot}</div>
         </div> : null}
+
+        <footer className={styles.footer}>
+          <a href="/Rules">See Rules</a>
+          <a href="/Contact">Meet the Developers</a>
+        </footer>
       </div>
     )
   }

@@ -12,27 +12,14 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.nav}>
-          <div className={styles.nav_header}>
-            <ul className={styles.links}>
-              <li>
-                <a href="/index">Home</a>
-              </li>
-              <li>
-                <a href="/Instructions">Rules</a>
-              </li>
-              <li>
-                <a href="/Contact">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-  
         <h1 className={styles.title}>
           ~ Welcome to War Card Game ~ <br></br><a href="https://info.mintbean.io/" target="_blank" alt="mintbean">Mintbean Hackathon</a>
         </h1>
         <a href="/Game">
           <h1>Enter Game</h1>
+        </a>
+        <a href="/Rules">
+          <h1>See the Rules</h1>
         </a>
       </main>
       <footer className={styles.footer}>
@@ -46,6 +33,7 @@ export default function Home() {
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
+        <a href="/Contact">Contact Us</a>
       </footer>
     </div>
   )
