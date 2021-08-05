@@ -13,11 +13,6 @@ const Rules = () => {
         <p className={styles.rules_details}>If the cards are the same rank, it is WarTime. Each player places three cards face down and one card face up as the attack card. The player with the higher attack card wins both piles. If however the attack card is again the same rank, the process repeats itself until there is a clear winner.</p>
       <h4 className={styles.rules_title}>HOW TO KEEP SCORE</h4>
         <p className={styles.rules_details}>The game ends when one player has won all the cards.</p>
-
-      <footer className={styles.footer}>
-        <a href="/Game">Back to Game</a>
-        <a href="/Contact">Meet the Developers</a>
-      </footer>
     </div>
   )
 }
