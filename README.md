@@ -11,18 +11,18 @@ Playing cards are at least ten centuries old. There are many decks, many games f
 - Accidental duplications of a card will be considered a bug, for which you will lose points. (See the scoring rubric for more details on how bugs affect your score)
 - No collectible card games or non-standard decks allowed (so for example, no Yu-Gi-Oh!, Magic the Gathering, or Pokemon. And no Tarot cards either.)
 
+## ScreenShots
+![Gameplay](/war-card-game/public/WarGamePlay.png?raw=true)
+![PlayerWinAnimation](war-card-game/public/Confetti Animation.png?raw=true)
+
 ### Technologies Used: JavaScript, React, Next.js, CSS3
 
 ### Created by:
 ##### Jason Bhatti
-[LinkedIn:](https://www.linkedin.com/in/jasonbhatti/)
-
-[Github:](https://github.com/bhattibytes)
+[LinkedIn](https://www.linkedin.com/in/jasonbhatti/) [Github](https://github.com/bhattibytes)
 
 ##### Pamela Jung
-[LinkedIn:](https://www.linkedin.com/in/pamjung/)
-
-[Github:](https://github.com/pamify)
+[LinkedIn](https://www.linkedin.com/in/pamjung/) [Github](https://github.com/pamify)
 
 We welcome your feedback and/or suggestions! - Jason & Pam
 
