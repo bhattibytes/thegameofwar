@@ -18,7 +18,7 @@ Playing cards are at least ten centuries old. There are many decks, many games f
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## ScreenShots
-![Demo](war-card-game/public/demo.gif?raw=true)
+![Demo](war-card-game/public/demo2.gif?raw=true)
 
 
 ![PlayerWinAnimation](war-card-game/public/ConfettiAnimation3.png?raw=true)
