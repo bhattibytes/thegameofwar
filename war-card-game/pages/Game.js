@@ -285,10 +285,14 @@ class Game extends React.Component {
           <img className={styles.playerDeckCoverWar2} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" />
           <img className={styles.playerDeckCoverWar3} src="https://www.atomsindustries.com/assets/images/items/asd1736/black-ghost-back.png" /><div className={styles.playerWarCardAttack}>{this.state.playerCardSlot}</div></div> : null }
           
-          {/* Buttons and Play Win/Loose Messages */}
+          {/* Buttons and Play Win/Lose Messages */}
           <div className={styles.playDiv}>
-            <div className={styles.text}> {this.state.play}</div>
-            <button className={styles.playButton} onClick={this.playGame}>PLAY</button>
+            <div className={styles.textDiv}>
+              <div className={styles.text}> {this.state.play}</div>
+            </div>
+            <div className={styles.buttonDiv}>
+              <button className={styles.playButton} onClick={this.playGame}>PLAY</button>
+            </div>
           </div>
           
           {/* Computer's Cards */}

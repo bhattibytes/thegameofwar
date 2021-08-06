@@ -1,7 +1,9 @@
 import React from 'react';
+import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import rules from '../public/rules.jpeg';
 
 const Instructions = () => {
   return (
@@ -11,8 +13,11 @@ const Instructions = () => {
           <h1 className={styles.instructions_heading}>Rules of the Game</h1>
         <div>
         </div>
-        <div className={styles.howToPlay}>
-          <img className={styles.howToPlayImg} src="https://i.ytimg.com/vi/J5vT33Vo04s/maxresdefault.jpg" height="400px"/>
+        <div className={styles.howToPlay_container}>
+          <div className={styles.howToPlay}>
+            <Image className={styles.howToPlayImg} src={rules} height={400} width={700
+            }/>
+          </div>
         </div>
           <div className={styles.rulesContainer}>
             <h4 className={styles.instruction_title}>THE DEAL</h4>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
 .container {
   min-height: 100vh;
   padding: 0 0.5rem;
@@ -12,6 +14,8 @@
   justify-content: center;
   font-style: oblique;
   background-color: white;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .main {
@@ -24,27 +28,37 @@
   align-items: center;
   margin-bottom: 5rem;
   width: 100%;
-  background-image: url("https://wallpaperaccess.com/full/3043444.jpg");
+  background-image: url('../public/home.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .game {
   height: 1000px;
-  background-image: url("https://images8.alphacoders.com/559/559296.jpg");
+  background-image: url('../public/game.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 95%;
   z-index: -100;
 }
 
+.howToPlay_container {
+  display: flex;
+  justify-content: center;
+}
+
 .howToPlay {
-  display: block;
-  align-content: center;
+  display: flex;
+  align-items: center;
+  height: 400px;
+  width: 700px;
+  border: 5px solid green;
+  background-color: green;
+  border-radius: 25px;
 }
 
 .howToPlayImg {
-  border: 3px solid green;
+    
   border-radius: 25px;
 }
 
@@ -52,54 +66,6 @@
   border-radius: 25px;
   margin-top: 30px;
   height: 500px;
-}
-
-.contact {
-  background-color: #03639c;
-  min-height: 1000px;
-}
-
-.contact_container {
-  display: grid;
-  grid-template-columns: 10% 10% 60% 10% 10%;
-  grid-template-rows: 50% 50%;
-  justify-items: center;
-}
-
-.jason {
-  position: relative;
-  grid-column: 3;
-  grid-row: 1;
-  text-align: center;
-  font-size: 26px;
-  font-weight: 600;
-}
-
-.pam {
-  grid-column: 3;
-  grid-row: 3;
-  text-align: center;
-  font-size: 26px;
-  font-weight: 600;
-}
-
-.contact_heading {
-  text-align: center;
-  padding-bottom: 3rem;
-}
-
-.linkedin {
-  border-radius: 25px;
-  margin-left: 20px;
-}
-
-.JB_profile {
-  border-radius: 50%;
-  margin-right: 20px;
-}
-
-.PJ_profile {
-  border-radius: 50%;
 }
 
 .instructions_container {
@@ -115,8 +81,63 @@
 
 .instructions_heading {
   text-align: center;
+  font-size: 50px;
   margin-bottom: 3rem;
 }
+
+.contact {
+  background-color: #03639c;
+  min-height: 1000px;
+}
+
+.contact_container {
+  display: grid;
+  grid-template-columns: 10% 10% 60% 10% 10%;
+  grid-template-rows: 50% 50%;
+  justify-items: center;
+}
+
+.contact_heading {
+  text-align: center;
+  padding-bottom: 1rem;
+  color: white;
+  font-size: 50px;
+}
+
+.jason {
+  position: relative;
+  grid-column: 3;
+  grid-row: 1;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  color: white;
+}
+
+.pam {
+  grid-column: 3;
+  grid-row: 2;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 20px;
+  color: white;
+}
+
+
+.linkedin {
+  margin-left: 20px;
+}
+
+.JB_profile {
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.PJ_profile {
+  border-radius: 50%;
+}
+
 
 .cardGame {
   margin: 0;
@@ -133,21 +154,32 @@
 .playDiv {
   grid-row: 2;
   grid-column: 2;
+  margin-bottom : -50px;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: center;
+ 
 }
 
 .text {
   display: flex;
-  align-items: center;
-  width: 200px;
+  justify-content: center;
+  width: auto;
   font-size: 30px;
   color: white;
 }
 
 .playButton {
   margin-top: 50px;
+  width: 150px;
   border-radius: 25px;
   outline: none;
   height: 50px;
+  font-size: 26px;
+  font-weight: 800;
+  z-index: 10;
 }
 
 .deck {
@@ -357,25 +389,15 @@
   flex-grow: 1;
 }
 
-.title a {
-  color: red;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
 .title {
   position: absolute;
   margin: 0;
   line-height: 1.15;
-  font-weight: 600;
-  font-size: 4rem;
-  top: 50px;
-  color: white;
+  font-weight: 700;
+  font-size: 5rem;
+  top: 20px;
+  color: red;
+  font-family: 'Aclonica', sans-serif;
 }
 
 .title,
@@ -385,6 +407,25 @@
 
 .landing {
   color: white;
+  font-family: 'Aclonica', sans-serif;
+  position: absolute;
+  top: 290px;
+}
+
+.landing:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.signature {
+  padding: 20px;
+  color: black;
+  font-weight: 700;
+}
+
+.builtWith {
+  margin-left: 20px;
+  font-weight: 700;
 }
 
 

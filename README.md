@@ -11,22 +11,20 @@ Playing cards are at least ten centuries old. There are many decks, many games f
 - Accidental duplications of a card will be considered a bug, for which you will lose points. (See the scoring rubric for more details on how bugs affect your score)
 - No collectible card games or non-standard decks allowed (so for example, no Yu-Gi-Oh!, Magic the Gathering, or Pokemon. And no Tarot cards either.)
 
+## Deployed on Vercel
+
+[TheGameofWar](https://thegameofwar.vercel.app/)
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
 ## ScreenShots
-![Landing](war-card-game/public/Landing.png?raw=true)
+![Demo](war-card-game/public/demo.gif?raw=true)
 
 
-![Instructions](war-card-game/public/Rules.png?raw=true)
+![PlayerWinAnimation](war-card-game/public/ConfettiAnimation3.png?raw=true)
 
 
-![Gameplay](/war-card-game/public/WarGamePlay.png?raw=true)
-
-
-![PlayerWinAnimation](war-card-game/public/ConfettiAnimation.png?raw=true)
-
-
-![LinkedinLanding](war-card-game/public/LinkedinLanding.png?raw=true)
-
-### Technologies Used: JavaScript, React, Next.js, CSS3
+### Technologies Used: React.js, Next.js, CSS3
 
 ### Created by:
 ##### Jason Bhatti
@@ -60,8 +58,4 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deployed on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
